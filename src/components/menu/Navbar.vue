@@ -1,5 +1,5 @@
 <template>
-  <b-navbar fixed="top" class="d-flex justify-content-between align-items-center" id="nav" v-if="userAuth == true">
+  <b-navbar fixed="top" class="d-flex justify-content-between align-items-center" id="nav">
     <b-navbar-brand id="app-logo">
       <h1>NOTEIFY</h1>
     </b-navbar-brand>
@@ -136,11 +136,12 @@
 <script>
 import { mapActions } from "vuex";
 import * as firebase from "firebase";
+import 'firebase/auth';
+import 'firebase/firestore';
 export default {
   data() {
     return {
-      isMobile: false,
-      userAuth: null
+      isMobile: false
     };
   },
 
@@ -150,16 +151,6 @@ export default {
       window.innerWidth < 700
         ? (this.isMobile = true)
         : (this.isMobile = false);
-    });
-  },
-  
-  created() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.userAuth = true;
-      } else {
-        this.userAuth = false;
-      }
     });
   },
 

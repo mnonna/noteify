@@ -1,8 +1,8 @@
 <template>
   <div id="app" class="d-flex justify-content-center align-items-center">
-    <navbar></navbar>
+    <navbar v-if="userAuth == true"></navbar>
     <router-view />
-    <player></player>
+    <player v-if="userAuth == true"></player>
   </div>
 </template>
 
@@ -46,10 +46,29 @@ body {
 <script>
 import navbar from "./components/menu/Navbar";
 import player from "./components/player/PlayerFooterComponent";
+import * as firebase from "firebase";
+import 'firebase/auth';
+import 'firebase/firestore';
 export default {
   components: {
     navbar,
     player
+  },
+
+  data(){
+    return{
+      userAuth: null
+    }
+  },
+
+  created(){
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.userAuth = true;
+      } else {
+        this.userAuth = false;
+      }
+    });
   }
 };
 </script>

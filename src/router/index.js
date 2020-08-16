@@ -1,6 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import * as firebase from "firebase";
+import "firebase/auth";
+import "firebase/firestore";
 //import store from "../store/index";
 
 Vue.use(VueRouter);
@@ -13,7 +15,16 @@ const routes = [
   {
     path: "/",
     name: "Login",
-    component: () => import("../views/Login.vue")
+    component: () => import("../views/Login.vue"),
+    beforeEnter: (to, from, next) => {
+      firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+          next({ name: "Favourites" });
+        } else {
+          next();
+        }
+      });
+    }
   },
   {
     path: "/favourites",

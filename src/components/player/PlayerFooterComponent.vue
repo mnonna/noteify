@@ -1,6 +1,5 @@
 <template>
   <div
-    v-if="userAuth == true"
     id="appPlayer"
     class="navbar fixed-bottom"
     :class="{'mobile-expand' : isExpanded == true && isMobile == true}"
@@ -232,7 +231,6 @@
 <script>
 import { mapGetters } from "vuex";
 import playerHandler from "./PlayerHandler";
-import * as firebase from "firebase";
 export default {
   components: {
     playerHandler
@@ -240,7 +238,6 @@ export default {
   data() {
     return {
       isMobile: false,
-      userAuth: null,
       isExpanded: false,
       mobileSongInfoActive: false
     };
@@ -272,16 +269,6 @@ export default {
       window.innerWidth <= 1366
         ? (this.isMobile = true)
         : (this.isMobile = false);
-    });
-  },
-
-  created() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        this.userAuth = true;
-      } else {
-        this.userAuth = false;
-      }
     });
   },
   

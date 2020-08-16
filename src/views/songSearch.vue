@@ -150,7 +150,7 @@
 
 <script>
 import { playlist } from "../playerHandlers/musicPlayerHandler";
-import _ from "lodash";
+import {debounce} from "lodash";
 import songCard from "../components/song/SongCardComponent";
 export default {
   components: {
@@ -176,7 +176,7 @@ export default {
   },
 
   methods: {
-    searchSong: _.debounce(function() {
+    searchSong: debounce(function() {
       const songName = this.songInputValue;
       var songResults = playlist.filter(song => {
         return (
