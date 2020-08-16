@@ -162,7 +162,7 @@ export default {
       setNext: "songState/setNext"
     }),
 
-    noteifyLogout: function(){
+    noteifyLogout: async function(){
       const currentSong = {
         id: null,
         name: "",
@@ -184,7 +184,7 @@ export default {
         img: ""
       };
 
-      firebase.auth().signOut().then(() => {
+      await firebase.auth().signOut().then(() => {
         this.initSong(currentSong);
         this.setPrev(nextSong);
         this.setNext(nextSong);

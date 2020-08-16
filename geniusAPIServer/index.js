@@ -73,6 +73,6 @@ var server = http.createServer(app, function(request, response) {
   response.end("Hello World\n");
 });
 
-server.listen(port, () => {
+server.listen(process.env.PORT || port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });

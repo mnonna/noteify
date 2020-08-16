@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const noteifyNodeURL = "http://localhost:5000/api";
-const noteifyArtistDesc = "http://localhost:5000/api/artist";
+const noteifyNodeURL = "https://noteify-node-api.herokuapp.com/api";
+const noteifyArtistDesc = "https://noteify-node-api.herokuapp.com/api/artist";
 
 export default {
   namespaced: true,
