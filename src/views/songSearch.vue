@@ -55,9 +55,6 @@
     min-height: 150px;
     .col {
       margin-top: 50px;
-      @media screen and (max-width: 500px) {
-        margin-top: 0;
-      }
     }
   }
   h2 {

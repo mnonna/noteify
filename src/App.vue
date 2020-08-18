@@ -27,7 +27,7 @@ body {
   }
 
   #app {
-    background-image: linear-gradient(90deg, rgba(200,214,229,.7) 10%, rgba(34,47,62,.5) 25%, rgba(34,47,62,.5) 65%, rgba(200,214,229,.7) 80%), url("./assets/img/turntable-1109588_1920.jpg");
+    background-image: linear-gradient( rgba(34,47,62,.65) 0%, rgba(34,47,62,.65) 100%), url("./assets/img/turntable-1109588_1920.jpg");
     background-attachment: fixed;
     background-size: cover;
     -webkit-font-smoothing: antialiased;
@@ -36,7 +36,7 @@ body {
     min-height: 100vh;
     height: auto;
     @media screen and (max-width: 1366px) {
-      background-image: linear-gradient(180deg, rgba(34,47,62,.7) 0%, rgba(34,47,62,.7) 100%), 
+      background-image: linear-gradient(180deg, rgba(34,47,62,.8) 0%, rgba(34,47,62,.8) 100%), 
       url("./assets/img/turntable-1109588_1920.jpg");
       background-color: #222f3e;
       p {

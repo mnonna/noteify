@@ -52,7 +52,6 @@
     #songLyrics {
       height: 600px;
       border-radius: 30px;
-      background-color: #222f3e;
       @media screen and (max-width: 1366px){
         background-color: transparent;
       }
@@ -116,6 +115,9 @@
     color: white;
     @media screen and (max-width: 500px){
       font-size: 24px;
+    }
+    @media screen and (min-width: 501px) and (max-width: 1024px){
+      font-size: 28px;
     }
   }
 }

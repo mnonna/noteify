@@ -82,6 +82,9 @@
         label {
           font-weight: bold;
           color: #222f3e;
+          @media screen and (max-width: 500px){
+            color: white;
+          }
         }
       }
       #loginButton {
@@ -96,13 +99,20 @@
         transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
           color 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
         color: white;
+        font-weight: 500;
         &:hover {
           background-color: white;
           color: #222f3e;
-          font-weight: 500;
           svg{
             fill:#222f3e;
             transform: translateX(10px)
+          }
+        }
+        @media screen and (max-width: 500px){
+          background-color: white;
+          color: #222f3e;
+          &:hover{
+            background-color: #00d2d3;
           }
         }
         @media screen and (max-width: 320px) {
@@ -113,6 +123,9 @@
           fill: white;
           margin-left: 10px;
           transition: all .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+          @media screen and (max-width: 500px){
+            fill: #222f3e;
+          }
         }
       }
       .form-input-wrapper,
@@ -137,6 +150,9 @@
     }
     @media screen and (min-width: 321px) and (max-width: 1024px) {
       font-size: 50px;
+    }
+    @media screen and (max-width: 1024px){
+      color: #00d2d3;
     }
   }
 }

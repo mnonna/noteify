@@ -69,24 +69,36 @@
   padding: 0;
   height: 100px;
   background-color: #222f3e;
+  border-bottom: 1px solid white;
   z-index: 1100;
   #app-logo {
     margin-left: 120px;
     color: white;
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 768px) {
       margin-left: 20px;
       h1 {
         margin: 0;
         font-size: 26px;
       }
     }
+    @media screen and (min-width: 769px) and (max-width: 1366px){
+      margin-left: 20px;
+      h1{
+        margin: 0;
+        font-size: 32px;
+      }
+    }
   }
   #navbar-links {
     height: 100%;
     width: 400px;
-    @media screen and (max-width: 500px) {
+    @media screen and (max-width: 700px) {
       height: auto;
       width: 150px;
+    }
+    @media screen and (min-width: 701px) and (max-width: 1024px) {
+      height: auto;
+      width: auto;
     }
   }
   a {
