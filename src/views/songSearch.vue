@@ -64,9 +64,7 @@
     font-family: "Montserrat", sans-serif;
     font-size: 24px;
     margin-bottom: 20px;
-    @media screen and (max-width: 1366px) {
-      color: white;
-    }
+    color: white;
   }
   .search-icon {
     position: relative;
@@ -84,12 +82,16 @@
     #songSearchInput {
       width: 400px;
       height: 35px;
-      border: 1px solid #222f3e;
+      border: 1px solid white;
+      color: white;
       border-radius: 30px;
       text-align: center;
       background: transparent;
       font-family: "Montserrat", sans-serif;
       outline: 0;
+      &::placeholder{
+        color: white;
+      }
       @media screen and (max-width: 320px) {
         width: 300px;
       }
@@ -98,7 +100,6 @@
       }
       @media screen and (max-width: 500px) {
         border: 1px solid #00d2d3;
-        color: white;
       }
     }
   }
@@ -140,9 +141,7 @@
       }
     }
     p {
-      @media screen and (max-width: 1366px) {
-        color: white;
-      }
+      color: #c8d6e5;
     }
   }
 }

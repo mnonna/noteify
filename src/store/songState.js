@@ -30,7 +30,8 @@ export default {
       album: "",
       url: "",
       img: ""
-    }
+    },
+    favSongsIDs: []
   },
 
   mutations: {
@@ -98,12 +99,28 @@ export default {
           (state.currentSong.songPlaying = true);
         state.currentSong.currentTime = "0:00";
       }
+    },
+    SET_FAV_SONG(state, id) {
+      if (!state.favSongsIDs.includes(id)) state.favSongsIDs.push(id);
+      else if (
+        state.favSongsIDs.includes(id) &&
+        Array.isArray(state.favSongsIDs) &&
+        state.favSongsIDs.length >= 0
+      ) {
+        const index = state.favSongsIDs.indexOf(id);
+        if (index > -1) {
+          state.favSongsIDs.splice(index, 1);
+        }
+      }
     }
   },
 
   getters: {
     getCurrentSong(state) {
       return state.currentSong;
+    },
+    getFavSongs(state) {
+      return state.favSongsIDs;
     }
   },
 
@@ -128,6 +145,9 @@ export default {
     },
     setNext({ commit }, next) {
       commit("SET_NEXT", next);
+    },
+    setFavSong({ commit }, id) {
+      commit("SET_FAV_SONG", id);
     }
   }
 };

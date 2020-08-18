@@ -52,9 +52,6 @@
 <style lang="scss" scoped>
 #loginMain {
   min-height: 100vh;
-  background: url("../assets/img/musical-background-2886886_1920.jpg") no-repeat
-    center center fixed;
-  background-size: cover;
   .row {
     height: 500px;
     width: 100%;
@@ -84,6 +81,7 @@
         }
         label {
           font-weight: bold;
+          color: #222f3e;
         }
       }
       #loginButton {
@@ -132,7 +130,7 @@
     }
   }
   h1 {
-    font-size: 70px;
+    font-size: 75px;
     color: #222f3e;
     @media screen and (max-width: 320px) {
       font-size: 40px;
@@ -167,27 +165,26 @@ export default {
     noteifyFirebaseAuth: async function() {
       let email = this.userCreds.email;
       let password = this.userCreds.password;
-      const auth = await firebase
+      await firebase
         .auth()
-        .signInWithEmailAndPassword(email, password)
+        .signInWithEmailAndPassword(email, password).then(
+          user => {
+            this.error = "";
+            let userCreds = {
+              email: user.email,
+              uID: user.uid,
+              token: user.xa
+            };
+
+            this.setUser(userCreds);
+            localStorage.setItem("firebaseToken", userCreds.token);
+          }
+        )
         .catch(error => {
           console.log(error);
+          this.error = error.message;
+          this.setUser({ email: null, uID: null, token: null });
         });
-
-      this.error = "";
-      let userCreds = {
-        email: auth.user.email,
-        uID: auth.user.uid,
-        token: auth.user.xa
-      };
-
-      if (userCreds.email) {
-        this.$router.push({ path: "/favourites" });
-        this.setUser(userCreds);
-        localStorage.setItem("firebaseToken", userCreds.token);
-      } else {
-        this.setUser({ email: null, uID: null, token: null });
-      }
     }
   }
 };

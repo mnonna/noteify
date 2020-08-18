@@ -150,7 +150,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getCurrentSong: "songState/getCurrentSong"
+      getCurrentSong: "songState/getCurrentSong",
+      favs: "songState/getFavSongs"
     }),
 
     setSongUrlPath() {
@@ -159,7 +160,27 @@ export default {
           ? require(`../../../src/assets/audio/${this.getCurrentSong.url}`)
           : ""
       };
+    },
+
+    setPlaylist: function() {
+      var user_playlist = [];
+      if (Array.isArray(this.favs) && this.favs.length > 0) {
+        this.favs.forEach(element => {
+          let sng_fav = playlist.filter(single => {
+            return single.id == element;
+          });
+          user_playlist.push(sng_fav[0]);
+        });
+      }else{
+        user_playlist = this.songs;
+      }
+
+      return user_playlist;
     }
+  },
+
+  mounted(){
+
   },
 
   methods: {
@@ -194,27 +215,31 @@ export default {
     },
     switchPrevSong: function() {
       const audio = document.querySelector("#audioSrc");
-      const currentSong = this.getCurrentSong.id - 1;
+      const currentSong = this.getCurrentSong.id;
+      const currentIndex = (this.favs.length > 0) ? this.favs.indexOf(currentSong) : this.setPlaylist.findIndex(x => x.id === currentSong);
       var prevSong;
-      currentSong != 0
+      currentIndex >= 1
         ? (prevSong = {
-            id: this.songs[currentSong - 1].id,
-            title: this.songs[currentSong - 1].title,
-            author: this.songs[currentSong - 1].author,
-            duration: this.songs[currentSong - 1].duration,
-            url: this.songs[currentSong - 1].url,
-            img: this.songs[currentSong - 1].img,
-            album: this.songs[currentSong - 1].album
+            id: this.setPlaylist[currentIndex - 1].id,
+            title: this.setPlaylist[currentIndex - 1].title,
+            author: this.setPlaylist[currentIndex - 1].author,
+            duration: this.setPlaylist[currentIndex - 1].duration,
+            url: this.setPlaylist[currentIndex - 1].url,
+            img: this.setPlaylist[currentIndex - 1].img,
+            album: this.setPlaylist[currentIndex - 1].album
           })
         : (prevSong = {
-            id: this.songs[this.songs.length - 1].id,
-            title: this.songs[this.songs.length - 1].title,
-            author: this.songs[this.songs.length - 1].author,
-            duration: this.songs[this.songs.length - 1].duration,
-            url: this.songs[this.songs.length - 1].url,
-            img: this.songs[this.songs.length - 1].img,
-            album: this.songs[this.songs.length - 1].album
+            id: this.setPlaylist[this.setPlaylist.length - 1].id,
+            title: this.setPlaylist[this.setPlaylist.length - 1].title,
+            author: this.setPlaylist[this.setPlaylist.length - 1].author,
+            duration: this.setPlaylist[this.setPlaylist.length - 1].duration,
+            url: this.setPlaylist[this.setPlaylist.length - 1].url,
+            img: this.setPlaylist[this.setPlaylist.length - 1].img,
+            album: this.setPlaylist[this.setPlaylist.length - 1].album
           });
+
+      
+
       this.setPrev(prevSong);
       this.switchPrevious();
       setTimeout(() => {
@@ -229,26 +254,27 @@ export default {
     },
     switchNextSong: function() {
       const audio = document.querySelector("#audioSrc");
-      const currentSong = this.getCurrentSong.id - 1;
+      const currentSong = this.getCurrentSong.id;
+      const currentIndex = (this.favs.length > 0) ? this.favs.indexOf(currentSong) : this.setPlaylist.findIndex(x => x.id === currentSong);
       var nextSong;
-      currentSong == this.songs.length - 1
+      currentIndex == this.setPlaylist.length - 1
         ? (nextSong = {
-            id: this.songs[0].id,
-            title: this.songs[0].title,
-            author: this.songs[0].author,
-            duration: this.songs[0].duration,
-            url: this.songs[0].url,
-            img: this.songs[0].img,
-            album: this.songs[0].album
+            id: this.setPlaylist[0].id,
+            title: this.setPlaylist[0].title,
+            author: this.setPlaylist[0].author,
+            duration: this.setPlaylist[0].duration,
+            url: this.setPlaylist[0].url,
+            img: this.setPlaylist[0].img,
+            album: this.setPlaylist[0].album
           })
         : (nextSong = {
-            id: this.songs[currentSong + 1].id,
-            title: this.songs[currentSong + 1].title,
-            author: this.songs[currentSong + 1].author,
-            duration: this.songs[currentSong + 1].duration,
-            url: this.songs[currentSong + 1].url,
-            img: this.songs[currentSong + 1].img,
-            album: this.songs[currentSong + 1].album
+            id: this.setPlaylist[currentIndex + 1].id,
+            title: this.setPlaylist[currentIndex + 1].title,
+            author: this.setPlaylist[currentIndex + 1].author,
+            duration: this.setPlaylist[currentIndex + 1].duration,
+            url: this.setPlaylist[currentIndex + 1].url,
+            img: this.setPlaylist[currentIndex + 1].img,
+            album: this.setPlaylist[currentIndex + 1].album
           });
       this.setNext(nextSong);
       this.switchNext();

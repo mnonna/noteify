@@ -190,7 +190,6 @@ export default {
         this.setNext(nextSong);
         this.setUser({email: null, uID: null, token: null});
         localStorage.removeItem("firebaseToken");
-        this.$router.push({path: "/"});
       }).catch(function(error) {
         console.log(error);
       });

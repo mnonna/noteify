@@ -60,7 +60,7 @@
               </svg>
             </div>
           </div>
-          <div class="song-like">
+          <div class="song-like" @click="setSongFav()" :class="{'like-fav' : setIsSongFav == true}">
             <svg width="24" height="24" viewBox="0 0 24 24">
               <path
                 d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C9.24,3 10.91,3.81 12,5.08C13.09,3.81 14.76,3 16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35Z"
@@ -143,6 +143,9 @@
       padding: 0;
       .song-like {
         justify-self: flex-end;
+        &.like-fav{
+          fill: white;
+        }
       }
       @media screen and (max-width: 500px) {
         width: 100%;
@@ -208,6 +211,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import noteifyPlayerHandler from "../../playerHandlers/musicPlayerHandler";
+import { playlist } from "../../playerHandlers/musicPlayerHandler";
 export default {
   props: {
     id: Number,
@@ -233,13 +237,15 @@ export default {
         song_album: this.album
       },
       next: this.nextSong,
-      prev: this.prevSong
+      prev: this.prevSong,
+      favourite: false
     };
   },
 
   computed: {
     ...mapGetters({
-      getCurrentSong: "songState/getCurrentSong"
+      getCurrentSong: "songState/getCurrentSong",
+      getFavSongs: "songState/getFavSongs"
     }),
     setSongClassName: function() {
       var className = "";
@@ -248,8 +254,15 @@ export default {
       } else {
         className = "playing-false";
       }
-
       return className;
+    },
+
+    setIsSongFav: function(){
+      let isFav = false;
+      if(this.getFavSongs.includes(this.id)) 
+        isFav = true;
+
+      return isFav;
     },
 
     setSongCardPlayingState: function() {
@@ -304,6 +317,7 @@ export default {
       setSongPlayState: "songState/setSongPlayState",
       setPrev: "songState/setPrev",
       setNext: "songState/setNext",
+      setFav: "songState/setFavSong",
       setLyrics: "geniusCurrentSongInfo/setCurrentSongLyrics"
     }),
     startSongPlaying: function() {
@@ -342,6 +356,16 @@ export default {
       const audio = document.querySelector("#audioSrc");
       this.setSongPlayState(false);
       this.cardSong.pauseSong(audio);
+    },
+    setSongFav: function(){
+      var id = this.id;
+
+      let song = playlist.filter(song => {
+        return song.id == id;
+      });
+      this.setFav(id);
+
+      console.log(song);
     }
   }
 };

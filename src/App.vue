@@ -27,13 +27,17 @@ body {
   }
 
   #app {
+    background-image: linear-gradient(90deg, rgba(200,214,229,.7) 10%, rgba(34,47,62,.5) 25%, rgba(34,47,62,.5) 65%, rgba(200,214,229,.7) 80%), url("./assets/img/turntable-1109588_1920.jpg");
+    background-attachment: fixed;
+    background-size: cover;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: #c8d6e5;
     max-width: 100vw;
     min-height: 100vh;
     height: auto;
     @media screen and (max-width: 1366px) {
+      background-image: linear-gradient(180deg, rgba(34,47,62,.7) 0%, rgba(34,47,62,.7) 100%), 
+      url("./assets/img/turntable-1109588_1920.jpg");
       background-color: #222f3e;
       p {
         font-size: 14px;

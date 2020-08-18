@@ -3,9 +3,9 @@
     <b-row class="d-flex justify-content-around align-items-center">
       <b-col id="songsWrapper" class="d-flex flex-column align-items-center" cols="12" xl="6">
         <h2>Your favourite songs</h2>
-        <b-row id="favSongs" class="d-flex justify-content-around align-items-center">
+        <b-row id="favSongs" class="d-flex justify-content-around align-items-center" v-if="Array.isArray(favs) && favs.length > 0">
           <b-col class="d-flex flex-column align-items-center" cols="12" xl="10">
-            <div v-for="song in songs" :key="song.id">
+            <div v-for="(song, i) in favSongs" :key="song.id">
               <singleSong
                 :id="song.id"
                 :author="song.author"
@@ -15,10 +15,16 @@
                 :img="song.img"
                 :playing="song.playing"
                 :url="song.url"
-                :prevSong="(song.id == 1) ? (songs[songs.length - 1]) : (songs[song.id - 2])"
-                :nextSong="(song.id == songs.length) ? (songs[0]) : (songs[song.id])"
+                :prevSong="(favSongs.length == 0) ? (favSongs[length - 1]) : (favSongs[i - 1])"
+                :nextSong="(i == favSongs.length - 1) ? (favSongs[0]) : (favSongs[i + 1])"
               />
             </div>
+          </b-col>
+        </b-row>
+        <b-row id="favSongs" class="no-favs d-flex justify-content-around align-items-center" v-else>
+          <b-col class="d-flex flex-column align-items-center" cols="12" xl="10">
+            <h2>Hi ! Here's your favourite songs playlist.</h2>
+            <p>Looks like you haven't liked any song yet. Go to <router-link id="fav-search-link" to="/search">Search</router-link> bookmark and add songs you like the most :)</p>
           </b-col>
         </b-row>
       </b-col>
@@ -63,6 +69,18 @@
         width: 90%;
         overflow-y: auto;
         overflow-x: hidden;
+        &.no-favs{
+          p{
+            color: white;
+            #fav-search-link{
+              color: #00d2d3;
+              text-decoration: none;
+              &:hover{
+                color: #ffff64;
+              }
+            }
+          }
+        }
         @media screen and (max-width: 768px){
           width: 100%;
         }
@@ -106,6 +124,7 @@
 <script>
 import singleSong from "../components/song/SongCardComponent";
 import { playlist } from "../playerHandlers/musicPlayerHandler";
+import { mapGetters } from "vuex";
 import geniusSongInfo from "../components/genius/geniusAPISongInfo";
 export default {
   name: "Home",
@@ -117,6 +136,26 @@ export default {
     return {
       songs: playlist
     };
+  },
+
+  computed: {
+    ...mapGetters({
+      favs: "songState/getFavSongs"
+    }),
+
+    favSongs: function(){
+      var favourites = [];
+
+      this.favs.forEach(element => {
+        let sng_fav = playlist.filter(single => {
+          return single.id == element;
+        })
+        favourites.push(sng_fav[0])    
+      });
+      
+    
+      return favourites;
+    }
   }
 };
 </script>

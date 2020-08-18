@@ -1,5 +1,5 @@
 <template>
-  <b-container id="aboutMain" class="d-flex align-items-center" fluid>
+  <b-container id="aboutMain" class="d-flex" fluid>
     <b-row class="d-flex justify-content-center align-items-center">
       <b-col
         sm="10"
@@ -7,7 +7,7 @@
         lg="8"
         xl="6"
         id="aboutWrapper"
-        class="d-flex flex-column justify-content-center align-items-center"
+        class="d-flex flex-column justify-content-around align-items-center"
       >
         <h2>About noteify app</h2>
         <p>
@@ -27,7 +27,8 @@
 
 <style lang="scss" scoped>
 #aboutMain {
-  height: 500px;
+  min-height: 100vh;
+  align-items: center;
   @media screen and (max-width: 320px){
     margin-top: 80px;
     margin-bottom: 150px;
@@ -37,7 +38,7 @@
     margin-top: 60px;
   }
   .row {
-    height: 100%;
+    height: 400px;
     @media screen and (max-width: 320px){
       height: 600px;
       padding: 20px;
@@ -52,14 +53,14 @@
     }
     #aboutWrapper {
       border-radius: 30px;
-      height: 100%;
       background-color: #222f3e;
       margin: 0;
-      padding: 30px;
       overflow-y: auto;
       overflow-x: hidden;
-      @media screen and (max-width: 500px){
-        padding: 0;
+      height: 100%;
+      @media screen and (max-width: 1366px){
+        background-color: transparent;
+        height: auto;
       }
       &::-webkit-scrollbar {
         width: 10px;
@@ -81,6 +82,9 @@
       p:nth-of-type(2) {
         margin-top: 20px;
       }
+      p{
+        text-align: justify;
+      }
       p,
       h2 {
         color: white;
@@ -95,7 +99,6 @@
         width: 150px;
         height: 50px;
         margin-top: 20px;
-        //background-color: transparent;
         border: 1px solid #00d2d3;
         background-image: linear-gradient(#00d2d3, rgb(255, 255, 255));
         background-size: 0% 100%;
@@ -105,6 +108,7 @@
         transition: background-size 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
           color 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
         p {
+          text-align: center;
           color: #222f3e;
         }
         &:hover {
