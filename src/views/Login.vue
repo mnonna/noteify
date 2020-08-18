@@ -81,10 +81,7 @@
         }
         label {
           font-weight: bold;
-          color: #222f3e;
-          @media screen and (max-width: 500px){
-            color: white;
-          }
+          color: white;
         }
       }
       #loginButton {
@@ -144,7 +141,7 @@
   }
   h1 {
     font-size: 75px;
-    color: #222f3e;
+    color: white;
     @media screen and (max-width: 320px) {
       font-size: 40px;
     }

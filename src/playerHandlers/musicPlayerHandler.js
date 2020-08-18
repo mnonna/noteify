@@ -18,7 +18,7 @@ export default class noteifyPlayerHandler {
       var ctx = progressBar.getContext("2d");
       progressBar.width = window.innerWidth;
       ctx.clearRect(0, 0, progressBar.clientWidth, progressBar.clientHeight);
-      ctx.fillStyle = "#222f3e";
+      ctx.fillStyle = "#00d2d3";
       var barWidth = (timeElapsed / length) * progressBar.clientWidth;
       ctx.fillRect(0, 0, barWidth, progressBar.clientHeight);
       return current;
