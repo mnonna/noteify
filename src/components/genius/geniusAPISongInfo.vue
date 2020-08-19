@@ -138,7 +138,7 @@
   }
   #songAuthorDesc {
     margin-bottom: 30px;
-    width: 350px;
+    width: 450px;
     margin-left: 30px;
     padding-right: 30px;
     overflow-y: auto;
@@ -149,6 +149,7 @@
       padding: 10px;
     }
     @media screen and (max-width: 500px) {
+      width: 350px;
       margin: 0;
       padding: 30px;
     }
@@ -175,6 +176,7 @@
       -webkit-box-shadow: inset 0 0 6px #00d2d3;
     }
     article {
+      width: 100%;
       p {
         text-align: center;
         color: white;

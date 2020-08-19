@@ -40,26 +40,15 @@ app.get("/api", (req, res) => {
 
 app.get("/api/artist", (req, res) => {
   axios
-    .get(`${artistURL}${req.query.id}`, {
+    .get(`${artistURL}${req.query.id}?text_format=plain`, {
       headers: {
         Authorization: `Bearer ${authToken}`
       }
     })
     .then(response => {
-      var desc;
-      response.data.response.artist.description.dom.children[0].children.forEach(
-        element => {
-          if (element.children != null) {
-            desc += element.children[0];
-            console.log(typeof element.children[0]);
-          } else {
-            desc += element;
-          }
-          console.log(element.children);
-        }
-      );
-      const description = desc.replace(/undefined/g, "");
-      return res.send({ artistDesc: description });
+      return res.send({
+        description: response.data.response.artist.description.plain
+      });
     })
     .catch(error => {
       return res.send(error);
@@ -74,5 +63,5 @@ var server = http.createServer(app, function(request, response) {
 });
 
 server.listen(process.env.PORT || port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+  console.log(`Server running on port :${port}`);
 });

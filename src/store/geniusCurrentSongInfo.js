@@ -63,7 +63,7 @@ export default {
         })
         .then(response => {
           console.log(response);
-          artistDesc = response.data.artistDesc;
+          artistDesc = response.data.description;
         })
         .catch(error => {
           console.log(error);
