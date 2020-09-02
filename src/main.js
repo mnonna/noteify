@@ -6,6 +6,7 @@ import {
   BRow,
   BContainer,
   BCol,
+  BCard,
   BNavbar,
   BNavbarBrand,
   BNavItem,
@@ -21,6 +22,7 @@ Vue.config.productionTip = false;
 Vue.component("b-row", BRow);
 Vue.component("b-col", BCol);
 Vue.component("b-container", BContainer);
+Vue.component("b-card", BCard);
 Vue.component("b-navbar", BNavbar);
 Vue.component("b-navbar-brand", BNavbarBrand);
 Vue.component("b-nav-item", BNavItem);
