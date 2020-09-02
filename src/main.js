@@ -2,13 +2,31 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
-import * as firebase from "firebase";
+import {
+  BRow,
+  BContainer,
+  BCol,
+  BNavbar,
+  BNavbarBrand,
+  BNavItem,
+  BNavbarNav,
+  BForm,
+  BFormInput
+} from "bootstrap-vue";
+import firebase from "firebase/app";
+import "firebase/auth";
 
 Vue.config.productionTip = false;
 
-Vue.use(BootstrapVue);
-Vue.use(IconsPlugin);
+Vue.component("b-row", BRow);
+Vue.component("b-col", BCol);
+Vue.component("b-container", BContainer);
+Vue.component("b-navbar", BNavbar);
+Vue.component("b-navbar-brand", BNavbarBrand);
+Vue.component("b-nav-item", BNavItem);
+Vue.component("b-navbar-nav", BNavbarNav);
+Vue.component("b-form", BForm);
+Vue.component("b-form-input", BFormInput);
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";

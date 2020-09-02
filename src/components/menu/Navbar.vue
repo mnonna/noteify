@@ -149,7 +149,6 @@
 import { mapActions } from "vuex";
 import * as firebase from "firebase";
 import 'firebase/auth';
-import 'firebase/firestore';
 export default {
   data() {
     return {

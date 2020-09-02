@@ -50,19 +50,17 @@ body {
 <script>
 import navbar from "./components/menu/Navbar";
 import player from "./components/player/PlayerFooterComponent";
-import * as firebase from "firebase";
+import firebase from "firebase";
 import 'firebase/auth';
-import 'firebase/firestore';
 export default {
-  components: {
-    navbar,
-    player
-  },
-
   data(){
     return{
       userAuth: null
     }
+  },
+
+  components: {
+    navbar,player
   },
 
   created(){
