@@ -12,7 +12,8 @@ import {
   BNavItem,
   BNavbarNav,
   BForm,
-  BFormInput
+  BFormInput,
+  BImg
 } from "bootstrap-vue";
 import firebase from "firebase/app";
 import "firebase/auth";
@@ -22,6 +23,7 @@ Vue.config.productionTip = false;
 Vue.component("b-row", BRow);
 Vue.component("b-col", BCol);
 Vue.component("b-container", BContainer);
+Vue.component("b-img", BImg);
 Vue.component("b-card", BCard);
 Vue.component("b-navbar", BNavbar);
 Vue.component("b-navbar-brand", BNavbarBrand);
